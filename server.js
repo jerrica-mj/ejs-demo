@@ -10,6 +10,7 @@ app.set('view engine', 'ejs');
 
 // index page (http://localhost:8080/)
 app.get('/', (req, res) => {
+    // define variables to be passed to index.ejs
     const mascots = [
         { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
         { name: 'Tux', organization: "Linux", birth_year: 1996},
@@ -17,6 +18,7 @@ app.get('/', (req, res) => {
     ];
     const tagline = "No programming concept is complete without a cute animal mascot.";
 
+    // pass the variables to the endpoint (index.ejs)
     res.render('pages/index', {
         mascots: mascots,
         tagline: tagline

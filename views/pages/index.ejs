@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- embed an EJS partial with this code, giving the relative path from this file -->
+    <!-- could pass variables to an EJS partial here by defining in the include(), after the partial's path (e.g.: include("path", {variable:"value"})), but you need to make sure that the variable is defined in every page that uses that partial
+    -- alternatively, you can define varianbes in a partial (so you don't need to worry about it being defined in each page file that uses that partial)
+    (e.g.: <em>Variant: <%= typeof variant != 'undefined' ? variant : 'default' %></em>) -->
     <%- include('../partials/head'); %>
 </head>
 <body class="container">
@@ -12,13 +16,16 @@
     <main>
         <div class="jumbotron">
             <h1>Top Mascots</h1>
+            <!-- Echo a single variable from server.js by calling it this way: -->
             <p><%= tagline %></p>
             <ul>
+                <!-- Loop over data in EJS like this: -->
                 <% mascots.forEach(function(mascot) { %>
                     <li>
                         <strong><%= mascot.name %></strong>
                         representing <%= mascot.organization %>, born <%= mascot.birth_year %>
                     </li>
+                <!-- Don't forget the closing brackets for the JS looping -->
                 <% }); %>
             </ul>
         </div>
