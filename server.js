@@ -1,20 +1,21 @@
 // load the things we need
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 // set the view engine to ejs
 app.set('view engine', 'ejs');
 
 // use res.render to load up an ejs view file
+// res.render() will look in a "views" folder for the view, so we only need to define "pages/index" when the full path is "views/pages/index"
 
-// index page 
-app.get('/', function(req, res) {
-    var mascots = [
+// index page (http://localhost:8080/)
+app.get('/', (req, res) => {
+    const mascots = [
         { name: 'Sammy', organization: "DigitalOcean", birth_year: 2012},
         { name: 'Tux', organization: "Linux", birth_year: 1996},
         { name: 'Moby Dock', organization: "Docker", birth_year: 2013}
     ];
-    var tagline = "No programming concept is complete without a cute animal mascot.";
+    const tagline = "No programming concept is complete without a cute animal mascot.";
 
     res.render('pages/index', {
         mascots: mascots,
@@ -23,7 +24,7 @@ app.get('/', function(req, res) {
 });
 
 // about page
-app.get('/about', function(req, res) {
+app.get('/about', (req, res) => {
     res.render('pages/about');
 });
 
